@@ -1,15 +1,32 @@
-import React from 'react';
+//  Import dependencies
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Character = () => {
-    
-  
+// Create Character component
+const Character = (props) => {
+    // Initiate state
+    const [info, setInfo] = useState([])
+    // Fetch data on render
+    useEffect(() => {
+        axios
+          .get(props.card.url)
+          .then(response => {
+            console.log('name the log', response);
+            setInfo(response.data);
+          })
+          .catch(error => {
+            console.log('name the log', error)
+          })
+    }, []);
+
+    // Return Character card, displaying Name, Height, and Weight
     return (
       <div className = 'character-card'>
-        <h2>Name</h2>
-        <img alt = 'pokemon'></img>
+        {/* Displaying the Name; Capitalizing the first letter, and slicing the rest back on  */}
+        <h2>{props.card.name[0].toUpperCase() + props.card.name.slice(1)}</h2>
+        <p className = 'height-weight'>{`Height: ${info.height}cm - Weight: ${info.weight}lbs`}</p>
       </div>
     );
 }
   
-  export default Character;
-  
+export default Character;

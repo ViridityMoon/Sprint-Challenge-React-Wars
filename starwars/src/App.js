@@ -11,14 +11,15 @@ const App = () => {
   // Fetch characters from the API in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
-  const [data, setData] = useState({})
-  const [id, setid] = useState()
-  
+  const [data, setData] = useState([]);
+
   useEffect(() => {
     axios
-      .get(BASE_URL`${id}`)
+      .get('https://pokeapi.co/api/v2/pokemon?limit=10&offset=200')
       .then(res => {
-       console.log('name the log', res);
+      //  console.log('name the log', res.data.results);
+      //  console.log(res.data.results);
+       setData(res.data.results);
       })
       .catch(error => {
       console.log('name the log', error)
@@ -30,10 +31,10 @@ const App = () => {
     <div className="App">
       <h1 className="Header">Characters</h1>
       <div>
-        <Character/>
+        {data.map(c => <Character card = {c}/>)}
       </div>
     </div>
   );
-}
+} 
 
 export default App;
