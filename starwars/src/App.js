@@ -3,6 +3,7 @@ import './App.css';
 import BASE_URL from './Constants/Constants';
 import Character from './components/Character';
 import axios from 'axios';
+import Container from './components/Container'
 
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
@@ -15,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=10&offset=200')
+      .get(BASE_URL)
       .then(res => {
       //  console.log('name the log', res.data.results);
       //  console.log(res.data.results);

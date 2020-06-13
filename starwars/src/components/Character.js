@@ -1,6 +1,7 @@
 //  Import dependencies
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Container from './Container'
 
 // Create Character component
 const Character = (props) => {
@@ -21,11 +22,13 @@ const Character = (props) => {
 
     // Return Character card, displaying Name, Height, and Weight
     return (
-      <div className = 'character-card'>
-        {/* Displaying the Name; Capitalizing the first letter, and slicing the rest back on  */}
-        <h2>{props.card.name[0].toUpperCase() + props.card.name.slice(1)}</h2>
-        <p className = 'height-weight'>{`Height: ${info.height}cm - Weight: ${info.weight}lbs`}</p>
-      </div>
+        <Container>
+            <div className = 'character-card'>
+                {/* Displaying the Name; Capitalizing the first letter, and slicing the rest back on  */}
+                <h2>{props.card.name[0].toUpperCase() + props.card.name.slice(1)}</h2>
+                <p className = 'height-weight'>{`Height: ${info.height}cm - Weight: ${info.weight}lbs`}</p>
+            </div>
+        </Container>
     );
 }
   
